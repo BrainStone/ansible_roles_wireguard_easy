@@ -1,5 +1,5 @@
 ---
-- ansible.builtin.import_role:
+- ansible.builtin.include_role:
     name: geerlingguy.nodejs
   vars:
     nodejs_version: "{{ wiregaurd_easy_nodejs_version }}"
