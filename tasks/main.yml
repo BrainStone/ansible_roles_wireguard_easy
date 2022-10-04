@@ -1,7 +1,5 @@
 ---
 - ansible.builtin.import_tasks: dependencies.yml
-  vars:
-    nodejs_version: "{{ wiregaurd_easy_nodejs_version }}"
   
 - ansible.builtin.import_tasks: sysctl.yml
 
