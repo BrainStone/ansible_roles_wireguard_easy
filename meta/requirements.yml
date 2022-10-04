@@ -1,4 +1,2 @@
----
 roles:
   - src: geerlingguy.nodejs
-    version: 6.1.0
