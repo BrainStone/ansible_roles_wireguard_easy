@@ -1,6 +1,7 @@
 ---
-- ansible.builtin.import_role:
+- ansible.builtin.include_role:
     name: geerlingguy.nodejs
   vars:
     nodejs_version: "{{ wiregaurd_easy_nodejs_version }}"
   when: not (wiregaurd_easy_skip_nodejs | bool)
+  ignore_errors: "{{ ansible_check_mode }}"
