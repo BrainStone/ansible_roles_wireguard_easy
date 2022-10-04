@@ -23,4 +23,4 @@ galaxy_info:
 
 # Dependencies are executed automatically. We have to put them in requirements.yml instead for them
 # to "just" be downloaded
-dependencies: []
+dependencies: [ ]
