@@ -1,0 +1,5 @@
+---
+- name: Restart wg-easy
+  ansible.builtin.systemd:
+    name: wg-easy.service
+    state: restarted

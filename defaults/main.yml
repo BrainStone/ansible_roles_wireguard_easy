@@ -2,3 +2,14 @@
 # Install NodeJS 14 by default
 wiregaurd_easy_nodejs_version: '14.x'
 wiregaurd_easy_skip_nodejs: false
+
+# Install parameters
+wiregaurd_easy_base_path: "/opt/wg-easy"
+wiregaurd_easy_repo_path: "{{ wiregaurd_easy_base_path }}/repo"
+wiregaurd_easy_bin_path: "{{ wiregaurd_easy_base_path }}/bin"
+
+# Service variables
+wiregaurd_easy_wg_host: "{{ inventory_hostname }}"
+wiregaurd_easy_wg_default_address: "10.8.0.0/24"
+wiregaurd_easy_wg_default_dns: "{{ wiregaurd_easy_wg_default_address | ansible.utils.ipaddr('first_usable') }}"
+wiregaurd_easy_password: ""

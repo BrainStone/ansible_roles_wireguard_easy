@@ -4,3 +4,7 @@
   vars:
     nodejs_version: "{{ wiregaurd_easy_nodejs_version }}"
   when: not (wiregaurd_easy_skip_nodejs | bool)
+  # This role doesn't work in check mode, so we allow it to error
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- ansible.builtin.import_role: systemd.yml
