@@ -2,7 +2,7 @@
 - name: Template wg-easy systemd file
   ansible.builtin.template:
     src: systemd/wg-easy.service.j2
-    dest: /etc/systemd/system/vouch-proxy.service
+    dest: /etc/systemd/system/wg-easy.service
   notify: Restart wg-easy
 
 - name: Enable wg-easy.service
