@@ -21,4 +21,5 @@ galaxy_info:
     - web_panel
     - wireguard
 
-dependencies: [ ]
+dependencies:
+  - geerlingguy.nodejs

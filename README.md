@@ -4,15 +4,19 @@ An Ansible role that will install WireGuard Easy (https://github.com/WeeJeWel/wg
 
 ## Requirements
 
-TODO
+This role requires NodeJS installed if you decide to skip letting the role install it and git.
 
 ## Role Variables
 
-TODO
+| Variable                        | Description                                                                                                   |
+|---------------------------------|---------------------------------------------------------------------------------------------------------------|
+| `wiregaurd_easy_nodejs_version` | The NodeJS version to use. Typically shouldn't need to be changed.<br/><br/>Default: `14.x`                   |
+| `wiregaurd_easy_skip_nodejs`    | If set to true skip installing NodeJS (which means you should install it yourself).<br/><br/>Default: `false` |
 
 ## Dependencies
 
-Only Ansible Builitins.
+The software needs NodeJS install, which will be done via the role [geerlingguy.nodejs](https://galaxy.ansible.com/geerlingguy/nodejs). You can set the 
+option `wiregaurd_easy_skip_nodejs` to true.
 
 ## Example Playbook
 
@@ -23,7 +27,7 @@ I personally recommend using `host_vars` or `group_vars`, but a simple copy past
   roles:
     - role: brainstone.wireguard_easy
       vars:
-        foo: bar
+        wiregaurd_easy_skip_nodejs: false
 ```
 
 ## License

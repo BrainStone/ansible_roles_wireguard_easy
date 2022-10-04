@@ -1,0 +1,4 @@
+---
+# Install NodeJS 14 by default
+wiregaurd_easy_nodejs_version: '14.x'
+wiregaurd_easy_skip_nodejs: false

@@ -1,0 +1,6 @@
+---
+- include_role:
+    name: geerlingguy.nodejs
+  vars:
+    nodejs_version: "{{ wiregaurd_easy_nodejs_version }}"
+  when: not (wiregaurd_easy_skip_nodejs | bool)
