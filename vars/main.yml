@@ -1,3 +1,0 @@
----
-# Set NodeJS version
-nodejs_version: "{{ wiregaurd_easy_nodejs_version }}"

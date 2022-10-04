@@ -21,5 +21,6 @@ galaxy_info:
     - web_panel
     - wireguard
 
-dependencies:
-  - geerlingguy.nodejs
+# Dependencies are executed automatically. We have to put them in requirements.yml instead for them
+# to "just" be downloaded
+dependencies: []
