@@ -5,3 +5,16 @@
     nodejs_version: "{{ wiregaurd_easy_nodejs_version }}"
   when: not (wiregaurd_easy_skip_nodejs | bool)
   ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Create wg-easy user
+  user:
+    name: "{{ wiregaurd_easy_user }}"
+    comment: wg-easy User
+    state: present
+    password: !
+    system: true
+    home: "/home/{{ wiregaurd_easy_user }}"
+    create_home: true
+    shell: /bin/bash
+    password_lock: true
+  check_mode: false

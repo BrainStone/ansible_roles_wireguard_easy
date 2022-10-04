@@ -4,6 +4,7 @@ wiregaurd_easy_nodejs_version: '14.x'
 wiregaurd_easy_skip_nodejs: false
 
 # Install parameters
+wiregaurd_easy_user: "wireguard"
 wiregaurd_easy_base_path: "/opt/wg-easy"
 wiregaurd_easy_repo_path: "{{ wiregaurd_easy_base_path }}/repo"
 wiregaurd_easy_bin_path: "{{ wiregaurd_easy_base_path }}/bin"
