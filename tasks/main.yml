@@ -1,6 +1,6 @@
 ---
-- ansible.builtin.import_tasks: dependencies.yml
+- ansible.builtin.include_tasks: dependencies.yml
   
-- ansible.builtin.import_tasks: sysctl.yml
+- ansible.builtin.include_tasks: sysctl.yml
 
-- ansible.builtin.import_tasks: systemd.yml
+- ansible.builtin.include_tasks: systemd.yml
