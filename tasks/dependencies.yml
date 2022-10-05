@@ -31,7 +31,7 @@
 
 - name: Allow WireGuard User passwordless sudo
   ansible.builtin.template:
-    src: sudo/01-wg-easy.j2
+    src: sudo/01-wireguard.j2
     dest: /etc/sudoers.d/01-{{ wiregaurd_easy_user }}
   when: wiregaurd_easy_user != 'root'
 
