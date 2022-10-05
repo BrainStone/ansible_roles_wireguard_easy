@@ -7,7 +7,7 @@
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Create wg-easy user
-  user:
+  ansible.builtin.user:
     name: "{{ wiregaurd_easy_user }}"
     comment: wg-easy User
     state: present
@@ -15,6 +15,7 @@
     system: true
     home: "/home/{{ wiregaurd_easy_user }}"
     create_home: true
-    shell: /bin/bash
+    shell: /sbin/nologin
     password_lock: true
+  # Always create the user, so that the following steps can succeed
   check_mode: false

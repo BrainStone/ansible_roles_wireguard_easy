@@ -1,0 +1,59 @@
+---
+- name: Create wg-easy dirs
+  ansible.builtin.file:
+    state: directory
+    path: "{{ item }}"
+    owner: "{{ wiregaurd_easy_user }}"
+    group: "{{ wiregaurd_easy_user }}"
+  loop:
+    - "{{ wiregaurd_easy_base_path }}"
+    - "{{ wiregaurd_easy_repo_path }}"
+    - "{{ wiregaurd_easy_bin_path }}"
+
+- name: Update wg-easy repo
+  ansible.builtin.git:
+    repo: "https://github.com/WeeJeWel/wg-easy.git"
+    dest: "{{ wiregaurd_easy_repo_path }}"
+    clone: true
+    update: true
+    force: true
+    depth: 1
+    single_branch: true
+  become: true
+  become_user: "{{ wiregaurd_easy_user }}"
+  register: wiregaurd_easy_repo_updated
+
+- name: Remove old folders
+  ansible.builtin.file:
+    state: absent
+    path: "{{ item }}"
+  loop:
+    - "{{ wiregaurd_easy_bin_path }}/app"
+    - "{{ wiregaurd_easy_bin_path }}/node_modules"
+  when: wiregaurd_easy_repo_updated.changed
+
+- name: Copy source files
+  ansible.builtin.copy:
+    remote_src: true
+    src: "{{ wiregaurd_easy_repo_path }}/src"
+    dest: "{{ wiregaurd_easy_bin_path }}/app"
+    owner: "{{ wiregaurd_easy_user }}"
+    group: "{{ wiregaurd_easy_user }}"
+  when: wiregaurd_easy_repo_updated.changed
+
+- name: Download dependencies
+  ansible.builtin.shell: npm ci --production
+  args:
+    chdir: "{{ wiregaurd_easy_bin_path }}/app"
+  become: true
+  become_user: "{{ wiregaurd_easy_user }}"
+  when: wiregaurd_easy_repo_updated.changed
+
+- name: Symlink node_modules files
+  ansible.builtin.file:
+    src: "{{ wiregaurd_easy_bin_path }}/app/node_modules"
+    dest: "{{ wiregaurd_easy_bin_path }}/node_modules"
+    state: link
+    owner: "{{ wiregaurd_easy_user }}"
+    group: "{{ wiregaurd_easy_user }}"
+  when: wiregaurd_easy_repo_updated.changed
