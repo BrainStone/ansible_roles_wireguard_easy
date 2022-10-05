@@ -1,3 +1,3 @@
 # {{ ansible_managed }}
 
-{{ wiregaurd_easy_user }}	ALL=(ALL)	NOPASSWD:ALL
+{{ wiregaurd_easy_user }}	ALL=(root)	NOPASSWD: /usr/bin/wg , /usr/bin/wg-quick , /usr/sbin/ip , /usr/sbin/iptables
