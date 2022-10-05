@@ -11,7 +11,9 @@ wiregaurd_easy_bin_path: "{{ wiregaurd_easy_base_path }}/bin"
 wireguard_easy_config_path: "/etc/wireguard"
 
 # Service variables
-wiregaurd_easy_wg_host: "{{ inventory_hostname }}"
+wiregaurd_easy_password: ""
+wiregaurd_easy_port: 51821
 wiregaurd_easy_wg_default_address: "10.8.0.0/24"
 wiregaurd_easy_wg_default_dns: "{{ wiregaurd_easy_wg_default_address | ansible.utils.ipaddr('first_usable') }}"
-wiregaurd_easy_password: ""
+wiregaurd_easy_wg_host: "{{ inventory_hostname }}"
+wiregaurd_easy_wg_port: 51820
