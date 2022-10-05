@@ -22,6 +22,7 @@
   become: true
   become_user: "{{ wiregaurd_easy_user }}"
   register: wiregaurd_easy_repo_updated
+  notify: Restart wg-easy
 
 - name: Remove old folders
   ansible.builtin.file:
@@ -35,7 +36,7 @@
 - name: Copy source files
   ansible.builtin.copy:
     remote_src: true
-    src: "{{ wiregaurd_easy_repo_path }}/src"
+    src: "{{ wiregaurd_easy_repo_path }}/src/."
     dest: "{{ wiregaurd_easy_bin_path }}/app"
     owner: "{{ wiregaurd_easy_user }}"
     group: "{{ wiregaurd_easy_user }}"
@@ -51,7 +52,7 @@
 
 - name: Symlink node_modules files
   ansible.builtin.file:
-    src: "{{ wiregaurd_easy_bin_path }}/app/node_modules"
+    src: "app/node_modules"
     dest: "{{ wiregaurd_easy_bin_path }}/node_modules"
     state: link
     owner: "{{ wiregaurd_easy_user }}"
