@@ -4,7 +4,7 @@ An Ansible role that will install WireGuard Easy (https://github.com/WeeJeWel/wg
 
 ## Requirements
 
-This role requires NodeJS installed if you decide to skip letting the role install it and git.
+This role requires NodeJS installed if you decide to skip letting the role install it, git and sudo (unless you set `wiregaurd_easy_user` to `root`.
 
 ## Role Variables
 
@@ -16,7 +16,7 @@ This role requires NodeJS installed if you decide to skip letting the role insta
 | `wiregaurd_easy_password`           | Password for the webinterface. If empty, everyone can access the interface.<br/><br/>Default: *Empty*                                                                                     |
 | `wiregaurd_easy_repo_path`          | The git repository path of the wg-easy installation. Should be inside `wiregaurd_easy_base_path`.<br/><br/>Default: <br/>`{{ wiregaurd_easy_base_path }}/repo`                            |
 | `wiregaurd_easy_skip_nodejs`        | If set to true skip installing NodeJS (which means you should install it yourself).<br/><br/>Default: `false`                                                                             |
-| `wiregaurd_easy_user`               | Which user to own the files and run the service as.<br/><br/>Default: `wireguard`                                                                                                         |
+| `wiregaurd_easy_user`               | Which user to own the files and run the service as. Will setup passwordless sudo for the user.<br/>Set to `root` to not use sudo<br/><br/>Default: `wireguard`                            |
 | `wiregaurd_easy_wg_default_address` | The subnet used for WireGuard. The host will be the first usable IP in that range.<br/><br/>Default: `10.8.0.0/24`                                                                        |
 | `wiregaurd_easy_wg_default_dns`     | Which DNS servers should the clients use by default. Leave empty for none.<br/><br/>Default: The IP of the host in the WireGuard subnet (if the subnet is 10.8.0.0/24, it'll be 10.8.0.1) |
 | `wiregaurd_easy_wg_host`            | The ideally publicly reachable host name of the WireGuard installation.<br/><br/>Default: the inventory host name                                                                         |

@@ -1,7 +1,9 @@
 ---
-- name: Install wireguard
+- name: Install wireguard and sudo
   ansible.builtin.package:
-    name: wireguard-tools
+    name:
+      - "{{ wiregaurd_easy_user == 'root' | ternary(omit, 'sudo') }}"
+      - wireguard-tools
     state: present
 
 - name: Install NodeJS
@@ -25,6 +27,13 @@
     password_lock: true
   # Always create the user, so that the following steps can succeed
   check_mode: false
+  when: wiregaurd_easy_user != 'root'
+
+- name: Allow WireGuard User passwordless sudo
+  ansible.builtin.template:
+    src: sudo/01-wg-easy.j2
+    dest: /etc/sudoers.d/01-{{ wiregaurd_easy_user }}
+  when: wiregaurd_easy_user != 'root'
 
 - name: Ensure config path file permissions
   ansible.builtin.file:
