@@ -2,7 +2,7 @@
 - name: Install wireguard and sudo
   ansible.builtin.package:
     name:
-      - "{{ wiregaurd_easy_user == 'root' | ternary(omit, 'sudo') }}"
+      - "{{ (wiregaurd_easy_user == 'root') | ternary(omit, 'sudo') }}"
       - wireguard-tools
     state: present
 
