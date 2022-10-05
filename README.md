@@ -23,7 +23,7 @@ This role requires NodeJS installed if you decide to skip letting the role insta
 
 ## Dependencies
 
-The software needs NodeJS install, which will be done via the role [geerlingguy.nodejs](https://galaxy.ansible.com/geerlingguy/nodejs). You can set the 
+The software needs NodeJS install, which will be done via the role [geerlingguy.nodejs](https://galaxy.ansible.com/geerlingguy/nodejs). You can set the
 option `wiregaurd_easy_skip_nodejs` to true.
 
 ## Example Playbook

@@ -1,5 +1,11 @@
 ---
-- ansible.builtin.include_role:
+- name: Install wireguard
+  ansible.builtin.package:
+    name: wireguard-tools
+    state: present
+
+- name: Install NodeJS
+  ansible.builtin.include_role:
     name: geerlingguy.nodejs
   vars:
     nodejs_version: "{{ wiregaurd_easy_nodejs_version }}"
