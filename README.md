@@ -20,6 +20,7 @@ This role requires NodeJS installed if you decide to skip letting the role insta
 | `wiregaurd_easy_wg_default_address` | The subnet used for WireGuard. The host will be the first usable IP in that range.<br/><br/>Default: `10.8.0.0/24`                                                                        |
 | `wiregaurd_easy_wg_default_dns`     | Which DNS servers should the clients use by default. Leave empty for none.<br/><br/>Default: The IP of the host in the WireGuard subnet (if the subnet is 10.8.0.0/24, it'll be 10.8.0.1) |
 | `wiregaurd_easy_wg_host`            | The ideally publicly reachable host name of the WireGuard installation.<br/><br/>Default: the inventory host name                                                                         |
+| `wireguard_easy_config_path`        | The config path for WireGuard.<br/><br/>Default: `/etc/wireguard`                                                                                                                         |
 
 ## Dependencies
 

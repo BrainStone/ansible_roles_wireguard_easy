@@ -25,3 +25,10 @@
     password_lock: true
   # Always create the user, so that the following steps can succeed
   check_mode: false
+
+- name: Ensure config path file permissions
+  ansible.builtin.file:
+    state: directory
+    path: "{{ wireguard_easy_config_path }}"
+    owner: "root"
+    group: "{{ wiregaurd_easy_user }}"

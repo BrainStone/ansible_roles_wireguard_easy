@@ -8,6 +8,7 @@ wiregaurd_easy_user: "wireguard"
 wiregaurd_easy_base_path: "/opt/wg-easy"
 wiregaurd_easy_repo_path: "{{ wiregaurd_easy_base_path }}/repo"
 wiregaurd_easy_bin_path: "{{ wiregaurd_easy_base_path }}/bin"
+wireguard_easy_config_path: "/etc/wireguard"
 
 # Service variables
 wiregaurd_easy_wg_host: "{{ inventory_hostname }}"

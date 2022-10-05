@@ -5,10 +5,11 @@ After=network.target
 
 [Service]
 Environment=DEBUG=Server,Wireguard
-Environment=WG_HOST={{ wiregaurd_easy_wg_host }} 
+Environment=PASSWORD={{ wiregaurd_easy_password }}
 Environment=WG_DEFAULT_ADDRESS={{ wiregaurd_easy_wg_default_address }}
 Environment=WG_DEFAULT_DNS={{ wiregaurd_easy_wg_default_dns }}
-Environment=PASSWORD={{ wiregaurd_easy_password }}
+Environment=WG_HOST={{ wiregaurd_easy_wg_host }} 
+Environment=WG_PATH={{ wireguard_easy_config_path }}
 
 User={{ wiregaurd_easy_user }}
 WorkingDirectory={{ wiregaurd_easy_bin_path }}/app
