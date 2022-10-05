@@ -32,3 +32,4 @@
     path: "{{ wireguard_easy_config_path }}"
     owner: "root"
     group: "{{ wiregaurd_easy_user }}"
+    mode: "g+rwx"
