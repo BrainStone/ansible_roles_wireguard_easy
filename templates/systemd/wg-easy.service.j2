@@ -7,13 +7,13 @@ After=network.target
 Environment=DEBUG=Server,Wireguard
 Environment=PASSWORD={{ wiregaurd_easy_password }}
 Environment=PORT={{ wiregaurd_easy_port }}
-Environment=WG_DEFAULT_ADDRESS={{ wiregaurd_easy_wg_default_address | replace('.0/24', '.x') }}
+Environment=WG_DEFAULT_ADDRESS={{ wiregaurd_easy_wg_default_address }}
 Environment=WG_DEFAULT_DNS={{ wiregaurd_easy_wg_default_dns }}
 Environment=WG_HOST={{ wiregaurd_easy_wg_host }} 
 Environment=WG_PORT={{ wiregaurd_easy_wg_port }} 
 Environment=WG_PATH={{ wireguard_easy_config_path }}
 
-#User={{ wiregaurd_easy_user }}
+User={{ wiregaurd_easy_user }}
 WorkingDirectory={{ wiregaurd_easy_bin_path }}/app
 ExecStart=node server.js
 

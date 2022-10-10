@@ -12,7 +12,7 @@
 
 - name: Update wg-easy repo
   ansible.builtin.git:
-    repo: "https://github.com/WeeJeWel/wg-easy.git"
+    repo: "https://github.com/BrainStone/wg-easy.git"
     dest: "{{ wiregaurd_easy_repo_path }}"
     clone: true
     update: true
