@@ -6,6 +6,7 @@ After=network.target
 [Service]
 Environment=DEBUG=Server,Wireguard
 Environment=PASSWORD={{ wiregaurd_easy_password }}
+Environment=LISTEN_IP={{ wiregaurd_easy_listen_ip }}
 Environment=PORT={{ wiregaurd_easy_port }}
 Environment=WG_DEFAULT_ADDRESS={{ wiregaurd_easy_wg_default_address }}
 Environment=WG_DEFAULT_DNS={{ wiregaurd_easy_wg_default_dns }}
