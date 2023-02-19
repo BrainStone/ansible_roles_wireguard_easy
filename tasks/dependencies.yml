@@ -2,7 +2,7 @@
 - name: Install wireguard and sudo
   ansible.builtin.package:
     name:
-      - "{{ (wiregaurd_easy_user == 'root') | ternary(omit, 'sudo') }}"
+      - "{{ (wireguard_easy_user == 'root') | ternary(omit, 'sudo') }}"
       - wireguard-tools
     state: present
 
@@ -10,35 +10,35 @@
   ansible.builtin.include_role:
     name: geerlingguy.nodejs
   vars:
-    nodejs_version: "{{ wiregaurd_easy_nodejs_version }}"
-  when: not (wiregaurd_easy_skip_nodejs | bool)
+    nodejs_version: "{{ wireguard_easy_nodejs_version }}"
+  when: not (wireguard_easy_skip_nodejs | bool)
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Create wg-easy user
   ansible.builtin.user:
-    name: "{{ wiregaurd_easy_user }}"
+    name: "{{ wireguard_easy_user }}"
     comment: wg-easy User
     state: present
     password: !
     system: true
-    home: "/home/{{ wiregaurd_easy_user }}"
+    home: "/home/{{ wireguard_easy_user }}"
     create_home: true
     shell: /sbin/nologin
     password_lock: true
   # Always create the user, so that the following steps can succeed
   check_mode: false
-  when: wiregaurd_easy_user != 'root'
+  when: wireguard_easy_user != 'root'
 
 - name: Allow WireGuard User passwordless sudo
   ansible.builtin.template:
     src: sudo/01-wireguard.j2
-    dest: /etc/sudoers.d/01-{{ wiregaurd_easy_user }}
-  when: wiregaurd_easy_user != 'root'
+    dest: /etc/sudoers.d/01-{{ wireguard_easy_user }}
+  when: wireguard_easy_user != 'root'
 
 - name: Ensure config path file permissions
   ansible.builtin.file:
     state: directory
     path: "{{ wireguard_easy_config_path }}"
     owner: "root"
-    group: "{{ wiregaurd_easy_user }}"
+    group: "{{ wireguard_easy_user }}"
     mode: "g+rwx"

@@ -4,31 +4,31 @@ An Ansible role that will install WireGuard Easy (https://github.com/WeeJeWel/wg
 
 ## Requirements
 
-This role requires NodeJS installed if you decide to skip letting the role install it, git and sudo (unless you set `wiregaurd_easy_user` to `root`.
+This role requires NodeJS installed if you decide to skip letting the role install it, git and sudo (unless you set `wireguard_easy_user` to `root`.
 
 ## Role Variables
 
 | Variable                            | Description                                                                                                                                                                               |
 |-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `wiregaurd_easy_base_path`          | The base path of the wg-easy installation.<br/><br/>Default: `/opt/wg-easy`                                                                                                               |
-| `wiregaurd_easy_bin_path`           | The git path of the binaries of the wg-easy installation. Should be inside `wiregaurd_easy_base_path`.<br/><br/>Default: <br/>`{{ wiregaurd_easy_base_path }}/bin`                        |
-| `wiregaurd_easy_nodejs_version`     | The NodeJS version to use. Typically shouldn't need to be changed.<br/><br/>Default: `14.x`                                                                                               |
-| `wiregaurd_easy_password`           | Password for the webinterface. If empty, everyone can access the interface.<br/><br/>Default: *Empty*                                                                                     |
-| `wiregaurd_easy_port`               | The webserver's port.<br/><br/>Default: `51821`                                                                                                                                           |
-| `wiregaurd_easy_repo_path`          | The git repository path of the wg-easy installation. Should be inside `wiregaurd_easy_base_path`.<br/><br/>Default: <br/>`{{ wiregaurd_easy_base_path }}/repo`                            |
-| `wiregaurd_easy_skip_nodejs`        | If set to true skip installing NodeJS (which means you should install it yourself).<br/><br/>Default: `false`                                                                             |
-| `wiregaurd_easy_user`               | Which user to own the files and run the service as. Will setup passwordless sudo for the user.<br/>Set to `root` to not use sudo<br/><br/>Default: `wireguard`                            |
-| `wiregaurd_easy_wg_default_address` | The subnet used for WireGuard. The host will be the first usable IP in that range.<br/><br/>Default: `10.8.0.0/24`                                                                        |
-| `wiregaurd_easy_wg_default_dns`     | Which DNS servers should the clients use by default. Leave empty for none.<br/><br/>Default: The IP of the host in the WireGuard subnet (if the subnet is 10.8.0.0/24, it'll be 10.8.0.1) |
-| `wiregaurd_easy_wg_host`            | The ideally publicly reachable host name of the WireGuard installation.<br/><br/>Default: the inventory host name                                                                         |
-| `wiregaurd_easy_wg_port`            | The WireGuard port.<br/><br/>Default: `51820`                                                                                                                                             |
+| `wireguard_easy_base_path`          | The base path of the wg-easy installation.<br/><br/>Default: `/opt/wg-easy`                                                                                                               |
+| `wireguard_easy_bin_path`           | The git path of the binaries of the wg-easy installation. Should be inside `wireguard_easy_base_path`.<br/><br/>Default: <br/>`{{ wireguard_easy_base_path }}/bin`                        |
+| `wireguard_easy_nodejs_version`     | The NodeJS version to use. Typically shouldn't need to be changed.<br/><br/>Default: `14.x`                                                                                               |
+| `wireguard_easy_password`           | Password for the webinterface. If empty, everyone can access the interface.<br/><br/>Default: *Empty*                                                                                     |
+| `wireguard_easy_port`               | The webserver's port.<br/><br/>Default: `51821`                                                                                                                                           |
+| `wireguard_easy_repo_path`          | The git repository path of the wg-easy installation. Should be inside `wireguard_easy_base_path`.<br/><br/>Default: <br/>`{{ wireguard_easy_base_path }}/repo`                            |
+| `wireguard_easy_skip_nodejs`        | If set to true skip installing NodeJS (which means you should install it yourself).<br/><br/>Default: `false`                                                                             |
+| `wireguard_easy_user`               | Which user to own the files and run the service as. Will setup passwordless sudo for the user.<br/>Set to `root` to not use sudo<br/><br/>Default: `wireguard`                            |
+| `wireguard_easy_wg_default_address` | The subnet used for WireGuard. The host will be the first usable IP in that range.<br/><br/>Default: `10.8.0.0/24`                                                                        |
+| `wireguard_easy_wg_default_dns`     | Which DNS servers should the clients use by default. Leave empty for none.<br/><br/>Default: The IP of the host in the WireGuard subnet (if the subnet is 10.8.0.0/24, it'll be 10.8.0.1) |
+| `wireguard_easy_wg_host`            | The ideally publicly reachable host name of the WireGuard installation.<br/><br/>Default: the inventory host name                                                                         |
+| `wireguard_easy_wg_port`            | The WireGuard port.<br/><br/>Default: `51820`                                                                                                                                             |
 | `wireguard_easy_config_path`        | The config path for WireGuard.<br/><br/>Default: `/etc/wireguard`                                                                                                                         |
-| `wiregaurd_easy_host_interface`     | The host interface to bridge WireGuard to.<br/><br/>Default: `{{ ansible_default_ipv4.interface }}` (which is the default network interface as detected by Ansible)                       |
+| `wireguard_easy_host_interface`     | The host interface to bridge WireGuard to.<br/><br/>Default: `{{ ansible_default_ipv4.interface }}` (which is the default network interface as detected by Ansible)                       |
 
 ## Dependencies
 
 The software needs NodeJS install, which will be done via the role [geerlingguy.nodejs](https://galaxy.ansible.com/geerlingguy/nodejs). You can set the
-option `wiregaurd_easy_skip_nodejs` to true.
+option `wireguard_easy_skip_nodejs` to true.
 
 ## Example Playbook
 
@@ -39,7 +39,7 @@ I personally recommend using `host_vars` or `group_vars`, but a simple copy past
   roles:
     - role: brainstone.wireguard_easy
       vars:
-        wiregaurd_easy_skip_nodejs: false
+        wireguard_easy_skip_nodejs: false
 ```
 
 ## License

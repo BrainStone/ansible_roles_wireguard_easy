@@ -1,21 +1,21 @@
 ---
 # Install NodeJS 14 by default
-wiregaurd_easy_nodejs_version: '14.x'
-wiregaurd_easy_skip_nodejs: false
+wireguard_easy_nodejs_version: '14.x'
+wireguard_easy_skip_nodejs: false
 
 # Install parameters
-wiregaurd_easy_user: "wireguard"
-wiregaurd_easy_base_path: "/opt/wg-easy"
-wiregaurd_easy_repo_path: "{{ wiregaurd_easy_base_path }}/repo"
-wiregaurd_easy_bin_path: "{{ wiregaurd_easy_base_path }}/bin"
+wireguard_easy_user: "wireguard"
+wireguard_easy_base_path: "/opt/wg-easy"
+wireguard_easy_repo_path: "{{ wireguard_easy_base_path }}/repo"
+wireguard_easy_bin_path: "{{ wireguard_easy_base_path }}/bin"
 wireguard_easy_config_path: "/etc/wireguard"
 
 # Service variables
-wiregaurd_easy_password: ""
-wiregaurd_easy_listen_ip: '0.0.0.0'
-wiregaurd_easy_port: 51821
-wiregaurd_easy_wg_default_address: "10.8.0.0/24"
-wiregaurd_easy_wg_default_dns: "{{ wiregaurd_easy_wg_default_address | ansible.utils.ipaddr('first_usable') }}"
-wiregaurd_easy_wg_host: "{{ inventory_hostname }}"
-wiregaurd_easy_wg_port: 51820
-wiregaurd_easy_host_interface: "{{ ansible_default_ipv4.interface }}"
+wireguard_easy_password: ""
+wireguard_easy_listen_ip: '0.0.0.0'
+wireguard_easy_port: 51821
+wireguard_easy_wg_default_address: "10.8.0.0/24"
+wireguard_easy_wg_default_dns: "{{ wireguard_easy_wg_default_address | ansible.utils.ipaddr('first_usable') }}"
+wireguard_easy_wg_host: "{{ inventory_hostname }}"
+wireguard_easy_wg_port: 51820
+wireguard_easy_host_interface: "{{ ansible_default_ipv4.interface }}"

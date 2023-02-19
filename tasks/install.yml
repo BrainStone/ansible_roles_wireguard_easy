@@ -3,25 +3,25 @@
   ansible.builtin.file:
     state: directory
     path: "{{ item }}"
-    owner: "{{ wiregaurd_easy_user }}"
-    group: "{{ wiregaurd_easy_user }}"
+    owner: "{{ wireguard_easy_user }}"
+    group: "{{ wireguard_easy_user }}"
   loop:
-    - "{{ wiregaurd_easy_base_path }}"
-    - "{{ wiregaurd_easy_repo_path }}"
-    - "{{ wiregaurd_easy_bin_path }}"
+    - "{{ wireguard_easy_base_path }}"
+    - "{{ wireguard_easy_repo_path }}"
+    - "{{ wireguard_easy_bin_path }}"
 
 - name: Update wg-easy repo
   ansible.builtin.git:
     repo: "https://github.com/BrainStone/wg-easy.git"
-    dest: "{{ wiregaurd_easy_repo_path }}"
+    dest: "{{ wireguard_easy_repo_path }}"
     clone: true
     update: true
     force: true
     depth: 1
     single_branch: true
   become: true
-  become_user: "{{ wiregaurd_easy_user }}"
-  register: wiregaurd_easy_repo_updated
+  become_user: "{{ wireguard_easy_user }}"
+  register: wireguard_easy_repo_updated
   notify: Restart wg-easy
 
 - name: Remove old folders
@@ -29,32 +29,32 @@
     state: absent
     path: "{{ item }}"
   loop:
-    - "{{ wiregaurd_easy_bin_path }}/app"
-    - "{{ wiregaurd_easy_bin_path }}/node_modules"
-  when: wiregaurd_easy_repo_updated.changed
+    - "{{ wireguard_easy_bin_path }}/app"
+    - "{{ wireguard_easy_bin_path }}/node_modules"
+  when: wireguard_easy_repo_updated.changed
 
 - name: Copy source files
   ansible.builtin.copy:
     remote_src: true
-    src: "{{ wiregaurd_easy_repo_path }}/src/."
-    dest: "{{ wiregaurd_easy_bin_path }}/app"
-    owner: "{{ wiregaurd_easy_user }}"
-    group: "{{ wiregaurd_easy_user }}"
-  when: wiregaurd_easy_repo_updated.changed
+    src: "{{ wireguard_easy_repo_path }}/src/."
+    dest: "{{ wireguard_easy_bin_path }}/app"
+    owner: "{{ wireguard_easy_user }}"
+    group: "{{ wireguard_easy_user }}"
+  when: wireguard_easy_repo_updated.changed
 
 - name: Download dependencies
   ansible.builtin.shell: npm ci --production
   args:
-    chdir: "{{ wiregaurd_easy_bin_path }}/app"
+    chdir: "{{ wireguard_easy_bin_path }}/app"
   become: true
-  become_user: "{{ wiregaurd_easy_user }}"
-  when: wiregaurd_easy_repo_updated.changed
+  become_user: "{{ wireguard_easy_user }}"
+  when: wireguard_easy_repo_updated.changed
 
 - name: Symlink node_modules files
   ansible.builtin.file:
     src: "app/node_modules"
-    dest: "{{ wiregaurd_easy_bin_path }}/node_modules"
+    dest: "{{ wireguard_easy_bin_path }}/node_modules"
     state: link
-    owner: "{{ wiregaurd_easy_user }}"
-    group: "{{ wiregaurd_easy_user }}"
-  when: wiregaurd_easy_repo_updated.changed
+    owner: "{{ wireguard_easy_user }}"
+    group: "{{ wireguard_easy_user }}"
+  when: wireguard_easy_repo_updated.changed
