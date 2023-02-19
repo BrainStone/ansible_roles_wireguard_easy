@@ -10,9 +10,17 @@ Environment=LISTEN_IP={{ wireguard_easy_listen_ip }}
 Environment=PORT={{ wireguard_easy_port }}
 Environment=WG_DEFAULT_ADDRESS={{ wireguard_easy_wg_default_address }}
 Environment=WG_DEFAULT_DNS={{ wireguard_easy_wg_default_dns }}
+Environment=WG_PATH={{ wireguard_easy_config_path }}
 Environment=WG_HOST={{ wireguard_easy_wg_host }}
 Environment=WG_PORT={{ wireguard_easy_wg_port }}
-Environment=WG_PATH={{ wireguard_easy_config_path }}
+{% if wireguard_easy_wg_mtu is not none %}
+Environment=WG_MTU={{ wireguard_easy_wg_mtu }}
+{% endif %}
+Environment=WG_PERSISTENT_KEEPALIVE={{ wireguard_easy_wg_persistent_keepalive }}
+Environment=WG_ALLOWED_IPS={{ wireguard_easy_wg_allowed_ips }}
+{% if wireguard_easy_enforce_wg_allowed_ips %}
+Environment=ENFORCE_WG_ALLOWED_IPS=true
+{% endif %}
 
 User={{ wireguard_easy_user }}
 WorkingDirectory={{ wireguard_easy_bin_path }}/app
