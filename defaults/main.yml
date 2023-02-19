@@ -18,4 +18,3 @@ wireguard_easy_wg_default_address: "10.8.0.0/24"
 wireguard_easy_wg_default_dns: "{{ wireguard_easy_wg_default_address | ansible.utils.ipaddr('first_usable') }}"
 wireguard_easy_wg_host: "{{ inventory_hostname }}"
 wireguard_easy_wg_port: 51820
-wireguard_easy_host_interface: "{{ ansible_default_ipv4.interface }}"
