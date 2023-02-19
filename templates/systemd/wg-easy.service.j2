@@ -14,7 +14,7 @@ Environment=WG_HOST={{ wireguard_easy_wg_host }}
 Environment=WG_PORT={{ wireguard_easy_wg_port }}
 Environment=WG_PATH={{ wireguard_easy_config_path }}
 Environment='WG_POST_UP=iptables -t nat -A POSTROUTING -s {{ wireguard_easy_wg_default_address }} -o {{ wireguard_easy_host_interface }} -j MASQUERADE;\
-iptables -A INPUT -p udp -m udp --dport {{ wireguard_easy_wg_port }}  -j ACCEPT;\
+iptables -A INPUT -p udp -m udp --dport {{ wireguard_easy_wg_port }} -j ACCEPT;\
 iptables -A FORWARD -i wg0 -j ACCEPT;\
 iptables -A FORWARD -o wg0 -j ACCEPT;\
 '
