@@ -23,6 +23,7 @@ This role requires NodeJS installed if you decide to skip letting the role insta
 | `wiregaurd_easy_wg_host`            | The ideally publicly reachable host name of the WireGuard installation.<br/><br/>Default: the inventory host name                                                                         |
 | `wiregaurd_easy_wg_port`            | The WireGuard port.<br/><br/>Default: `51820`                                                                                                                                             |
 | `wireguard_easy_config_path`        | The config path for WireGuard.<br/><br/>Default: `/etc/wireguard`                                                                                                                         |
+| `wiregaurd_easy_host_interface`     | The host interface to bridge WireGuard to.<br/><br/>Default: `{{ ansible_default_ipv4.interface }}` (which is the default network interface as detected by Ansible)                       |
 
 ## Dependencies
 
