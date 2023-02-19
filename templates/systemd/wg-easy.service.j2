@@ -17,7 +17,7 @@ Environment=WG_PORT={{ wireguard_easy_wg_port }}
 Environment=WG_MTU={{ wireguard_easy_wg_mtu }}
 {% endif %}
 Environment=WG_PERSISTENT_KEEPALIVE={{ wireguard_easy_wg_persistent_keepalive }}
-Environment='WG_ALLOWED_IPS={{ wireguard_easy_wg_allowed_ips }}'
+Environment='WG_ALLOWED_IPS={{ wireguard_easy_wg_allowed_ips if wireguard_easy_wg_allowed_ips is string else wireguard_easy_wg_allowed_ips | join(', ') }}'
 {% if wireguard_easy_enforce_wg_allowed_ips %}
 Environment=ENFORCE_WG_ALLOWED_IPS=true
 {% endif %}
