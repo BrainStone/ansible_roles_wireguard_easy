@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - wireguard_easy
+    - ansible_roles_wireguard_easy

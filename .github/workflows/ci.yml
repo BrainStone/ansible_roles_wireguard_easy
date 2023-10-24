@@ -16,18 +16,17 @@ jobs:
         with:
           python-version: '3.5.10'
 
-      - name: Install dependencies
-        run: pip install 'ansible>=2.9,<2.10'
+      - name: Install Ansible 2.10
+        run: pip install 'ansible>=2.10,<2.11'
 
       - name: Check Ansible version
         run: ansible --version
 
+      - name: Install Galaxy dependencies
+        run: '[[ -f meta/requirements.yml ]] && ansible-galaxy install -r meta/requirements.yml'
+
       - name: Check Ansible playbook syntax
-        run: |
-          printf '[defaults]\nroles_path=../' >./ansible.cfg
-          cat ./ansible.cfg
-          pwd
-          ANSIBLE_CONFIG=./ansible.cfg ansible-playbook tests/test.yml -i tests/inventory --syntax-check
+        run: ANSIBLE_ROLES_PATH="$HOME/roles/:../" ansible-playbook -v tests/test.yml -i tests/inventory --syntax-check
 
   release:
     name: Release role to Galaxy
