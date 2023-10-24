@@ -21,6 +21,10 @@ galaxy_info:
     - web_panel
     - wireguard
 
-# Dependencies are executed automatically. We have to put them in requirements.yml instead for them
-# to "just" be downloaded
-dependencies: [ ]
+dependencies:
+  - role: geerlingguy.nodejs
+    tags: ["nodejs"]
+    vars:
+      nodejs_version: "{{ wireguard_easy_nodejs_version }}"
+    when: "not (wireguard_easy_skip_nodejs | bool)"
+    ignore_errors: "{{ ansible_check_mode }}"

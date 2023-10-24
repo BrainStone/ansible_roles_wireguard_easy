@@ -6,14 +6,6 @@
       - wireguard-tools
     state: present
 
-- name: Install NodeJS
-  ansible.builtin.include_role:
-    name: geerlingguy.nodejs
-  vars:
-    nodejs_version: "{{ wireguard_easy_nodejs_version }}"
-  when: not (wireguard_easy_skip_nodejs | bool)
-  ignore_errors: "{{ ansible_check_mode }}"
-
 - name: Create wg-easy user
   ansible.builtin.user:
     name: "{{ wireguard_easy_user }}"
