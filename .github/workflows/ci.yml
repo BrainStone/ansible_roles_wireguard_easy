@@ -11,13 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up Python 2.7
+      - name: Set up Python
         uses: actions/setup-python@v4
-        with:
-          python-version: 2.7
 
       - name: Install dependencies
-        run: pip install ansible
+        run: pip install ansible>=2.9,<2.10
 
       - name: Check Ansible version
         run: ansible --version
