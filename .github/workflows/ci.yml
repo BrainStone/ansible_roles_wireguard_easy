@@ -23,7 +23,7 @@ jobs:
         run: ansible --version
 
       - name: Install Galaxy dependencies
-        run: '[[ -f meta/requirements.yml ]] && ansible-galaxy install -r meta/requirements.yml'
+        run: '[[ ! -f meta/requirements.yml ]] || ansible-galaxy install -r meta/requirements.yml'
 
       - name: Check Ansible playbook syntax
         run: ANSIBLE_ROLES_PATH="$HOME/.ansible/roles/:../" ansible-playbook -v tests/test.yml -i tests/inventory --syntax-check
