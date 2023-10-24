@@ -25,6 +25,8 @@ jobs:
       - name: Check Ansible playbook syntax
         run: |
           printf '[defaults]\nroles_path=../' >./ansible.cfg
+          cat ./ansible.cfg
+          pwd
           ANSIBLE_CONFIG=./ansible.cfg ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
   release:
